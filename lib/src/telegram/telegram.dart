@@ -135,7 +135,7 @@ class Telegram {
   ///
   /// [User]: https://core.telegram.org/bots/api#user
   Future<User> getMe() async =>
-      User.fromJson(await (HttpClient.httpGet('${_baseUrl}${_token}/getMe') as FutureOr<Map<String, dynamic>>));
+      User.fromJson(await (HttpClient.httpGet('${_baseUrl}${_token}/getMe')));
 
   /// Use this method to log out from the cloud Bot API server before launching the bot locally.
   /// You must log out the bot before running it locally,
