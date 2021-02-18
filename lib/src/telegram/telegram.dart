@@ -126,7 +126,7 @@ class Telegram {
   /// [WebhookInfo]: https://core.telegram.org/bots/api#webhookinfo
   /// [getUpdates]: https://core.telegram.org/bots/api#getupdates
   Future<WebhookInfo> getWebhookInfo() async => WebhookInfo.fromJson(
-      await (HttpClient.httpGet('${_baseUrl}${_token}/getWebhookInfo') as FutureOr<Map<String, dynamic>>));
+      await (HttpClient.httpGet('${_baseUrl}${_token}/getWebhookInfo')));
 
   /// A simple method for testing your bot's auth token. Requires no parameters.
   /// Returns basic information about the bot in form of a [User] object.
@@ -211,7 +211,7 @@ class Telegram {
       'message_id': message_id,
       'disable_notification': disable_notification,
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// se this method to copy messages of any kind.
@@ -253,7 +253,7 @@ class Telegram {
       'reply_markup': jsonEncode(reply_markup)
     };
     return MessageId.fromJson(
-        await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+        await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to send photos. On success, the sent [Message] is returned.
@@ -297,10 +297,10 @@ class Telegram {
     }
 
     return multiPartFiles.isEmpty
-        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>))
+        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)))
         : Message.fromJson(await (HttpClient.httpMultipartPost(
             requestUrl, multiPartFiles,
-            body: body) as FutureOr<Map<String, dynamic>>));
+            body: body)));
   }
 
   /// Use this method to send audio files,
@@ -369,10 +369,10 @@ class Telegram {
     }
 
     return multiPartFiles.isEmpty
-        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>))
+        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)))
         : Message.fromJson(await (HttpClient.httpMultipartPost(
             requestUrl, multiPartFiles,
-            body: body) as FutureOr<Map<String, dynamic>>));
+            body: body)));
   }
 
   /// Use this method to send general files. On success, the sent [Message] is returned.
@@ -432,10 +432,10 @@ class Telegram {
     }
 
     return multiPartFiles.isEmpty
-        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>))
+        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)))
         : Message.fromJson(await (HttpClient.httpMultipartPost(
             requestUrl, multiPartFiles,
-            body: body) as FutureOr<Map<String, dynamic>>));
+            body: body)));
   }
 
   /// Use this method to send video files,
@@ -504,10 +504,10 @@ class Telegram {
     }
 
     return multiPartFiles.isEmpty
-        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>))
+        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)))
         : Message.fromJson(await (HttpClient.httpMultipartPost(
             requestUrl, multiPartFiles,
-            body: body) as FutureOr<Map<String, dynamic>>));
+            body: body)));
   }
 
   /// Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
@@ -572,10 +572,10 @@ class Telegram {
     }
 
     return multiPartFiles.isEmpty
-        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>))
+        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)))
         : Message.fromJson(await (HttpClient.httpMultipartPost(
             requestUrl, multiPartFiles,
-            body: body) as FutureOr<Map<String, dynamic>>));
+            body: body)));
   }
 
   /// Use this method to send audio files,
@@ -629,10 +629,10 @@ class Telegram {
     }
 
     return multiPartFiles.isEmpty
-        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>))
+        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)))
         : Message.fromJson(await (HttpClient.httpMultipartPost(
             requestUrl, multiPartFiles,
-            body: body) as FutureOr<Map<String, dynamic>>));
+            body: body)));
   }
 
   /// As of [v.4.0], Telegram clients support rounded square mp4 videos of up to 1 minute long.
@@ -688,10 +688,10 @@ class Telegram {
     }
 
     return multiPartFiles.isEmpty
-        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>))
+        ? Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)))
         : Message.fromJson(await (HttpClient.httpMultipartPost(
             requestUrl, multiPartFiles,
-            body: body) as FutureOr<Map<String, dynamic>>));
+            body: body)));
   }
 
   // TODO: #9
@@ -758,7 +758,7 @@ class Telegram {
       'allow_sending_without_reply': allow_sending_without_reply,
       'reply_markup': jsonEncode(reply_markup),
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to edit live location messages sent by the bot or via the bot
@@ -801,7 +801,7 @@ class Telegram {
       'proximity_alert_radius': proximity_alert_radius,
       'reply_markup': jsonEncode(reply_markup),
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to stop updating a live location message sent by the bot or via the bot
@@ -833,7 +833,7 @@ class Telegram {
       'inline_message_id': inline_message_id,
       'reply_markup': jsonEncode(reply_markup),
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to send information about a venue. On success, the sent [Message] is returned.
@@ -871,7 +871,7 @@ class Telegram {
       'allow_sending_without_reply': allow_sending_without_reply,
       'reply_markup': jsonEncode(reply_markup),
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to send phone contacts. On success, the sent [Message] is returned.
@@ -903,7 +903,7 @@ class Telegram {
       'allow_sending_without_reply': allow_sending_without_reply,
       'reply_markup': jsonEncode(reply_markup),
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to send a native poll. A native poll can't be sent to a private chat.
@@ -952,7 +952,7 @@ class Telegram {
       'allow_sending_without_reply': allow_sending_without_reply,
       'reply_markup': jsonEncode(reply_markup),
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to send an animated emoji that will display a random value.
@@ -976,7 +976,7 @@ class Telegram {
       'allow_sending_without_reply': allow_sending_without_reply,
       'reply_markup': jsonEncode(reply_markup),
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method when you need to tell the user that something is happening on the bot's side.
@@ -1020,7 +1020,7 @@ class Telegram {
       'limit': limit,
     };
     return UserProfilePhotos.fromJson(
-        await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+        await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to get basic info about a file and prepare it for downloading.
@@ -1041,7 +1041,7 @@ class Telegram {
   Future<File> getFile(String file_id) async {
     var requestUrl = '${_baseUrl}${_token}/getFile';
     var body = <String, dynamic>{'file_id': file_id};
-    return File.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return File.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to kick a user from a group, a supergroup or a channel.
@@ -1371,7 +1371,7 @@ class Telegram {
     }
     var requestUrl = '${_baseUrl}${_token}/getChat';
     var body = <String, dynamic>{'chat_id': chat_id};
-    return Chat.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Chat.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to get a list of administrators in a chat.
@@ -1425,7 +1425,7 @@ class Telegram {
       'user_id': user_id,
     };
     return ChatMember.fromJson(
-        await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+        await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to set a group sticker set for a supergroup.
@@ -1700,7 +1700,7 @@ class Telegram {
       'message_id': message_id,
       'reply_markup': reply_markup,
     };
-    return Poll.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Poll.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to delete a message, including service messages, with the following limitations:
@@ -1756,11 +1756,11 @@ class Telegram {
           MultipartFile('sticker', sticker.openRead(), sticker.lengthSync(),
               filename: '${sticker.lengthSync()}'));
       return Message.fromJson(
-          await (HttpClient.httpMultipartPost(requestUrl, files, body: body) as FutureOr<Map<String, dynamic>>));
+          await (HttpClient.httpMultipartPost(requestUrl, files, body: body)));
     } else if (sticker is String) {
       body.addAll({'sticker': sticker});
       return Message.fromJson(
-          await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+          await (HttpClient.httpPost(requestUrl, body: body)));
     } else {
       return Future.error(TelegramException(
           'Attribute \'sticker\' can only be either io.File or String (Telegram file_id or image url)'));
@@ -1776,7 +1776,7 @@ class Telegram {
     var requestUrl = '${_baseUrl}${_token}/getStickerSet';
     var body = <String, dynamic>{'name': name};
     return StickerSet.fromJson(
-        await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+        await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to upload a .png file with a sticker for later use in
@@ -1796,7 +1796,7 @@ class Telegram {
             'png_sticker', png_sticker.openRead(), png_sticker.lengthSync(),
             filename: '${png_sticker.lengthSync()}'));
     return File.fromJson(
-        await (HttpClient.httpMultipartPost(requestUrl, files, body: body) as FutureOr<Map<String, dynamic>>));
+        await (HttpClient.httpMultipartPost(requestUrl, files, body: body)));
   }
 
   /// Use this method to create sticker set owned by a user.
@@ -2035,7 +2035,7 @@ class Telegram {
       'allow_sending_without_reply': allow_sending_without_reply,
       'reply_markup': jsonEncode(reply_markup),
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// If you sent an invoice requesting a shipping address and the parameter *is_flexible* was specified,
@@ -2130,7 +2130,7 @@ class Telegram {
       'allow_sending_without_reply': allow_sending_without_reply,
       'reply_markup': jsonEncode(reply_markup),
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to set the score of the specified user in a game.
@@ -2165,7 +2165,7 @@ class Telegram {
       'message_id': message_id,
       'inline_message_id': inline_message_id,
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to get data for high score tables.
