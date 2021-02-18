@@ -189,7 +189,7 @@ class Telegram {
       'allow_sending_without_reply': allow_sending_without_reply,
       'reply_markup': jsonEncode(reply_markup),
     };
-    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<Map<String, dynamic>>));
+    return Message.fromJson(await (HttpClient.httpPost(requestUrl, body: body)));
   }
 
   /// Use this method to forward messages of any kind. On success, the sent [Message] is returned.
