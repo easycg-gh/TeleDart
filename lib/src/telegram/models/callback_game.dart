@@ -25,7 +25,7 @@ part of '../model.dart';
 @JsonSerializable()
 class CallbackGame {
   CallbackGame();
-  factory CallbackGame.fromJson(Map<String, dynamic> json) =>
-      _$CallbackGameFromJson(json);
+  factory CallbackGame.fromJson(Map<String, dynamic>? json) =>
+      _$CallbackGameFromJson(json??{});
   Map<String, dynamic> toJson() => _$CallbackGameToJson(this);
 }

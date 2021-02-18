@@ -22,18 +22,18 @@ part of '../model.dart';
 /// https://core.telegram.org/bots/api#update
 @JsonSerializable()
 class Update {
-  int update_id;
-  Message message;
-  Message edited_message;
-  Message channel_post;
-  Message edited_channel_post;
-  InlineQuery inline_query;
-  ChosenInlineResult chosen_inline_result;
-  CallbackQuery callback_query;
-  ShippingQuery shipping_query;
-  PreCheckoutQuery pre_checkout_query;
-  Poll poll;
-  PollAnswer poll_answer;
+  int? update_id;
+  Message? message;
+  Message? edited_message;
+  Message? channel_post;
+  Message? edited_channel_post;
+  InlineQuery? inline_query;
+  ChosenInlineResult? chosen_inline_result;
+  CallbackQuery? callback_query;
+  ShippingQuery? shipping_query;
+  PreCheckoutQuery? pre_checkout_query;
+  Poll? poll;
+  PollAnswer? poll_answer;
   Update({
     this.update_id,
     this.message,

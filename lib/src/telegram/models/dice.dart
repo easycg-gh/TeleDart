@@ -27,8 +27,8 @@ class Dice {
   static const String FOOTBALL = '⚽';
   static const String SLOT_MACHINE = '🎰';
 
-  int value;
-  String emoji;
+  int? value;
+  String? emoji;
   Dice({
     this.value,
     this.emoji,
