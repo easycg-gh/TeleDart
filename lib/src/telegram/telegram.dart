@@ -99,9 +99,9 @@ class Telegram {
       files.add(MultipartFile(
           'certificate', certificate.openRead(), certificate.lengthSync(),
           filename: '${certificate.lengthSync()}'));
-      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body) as FutureOr<bool>);
+      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body));
     } else {
-      return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+      return await (HttpClient.httpPost(requestUrl, body: body));
     }
   }
 
@@ -114,7 +114,7 @@ class Telegram {
   Future<bool> deleteWebhook({bool? drop_pending_updates}) async {
     var requestUrl = '${_baseUrl}${_token}/deleteWebhook';
     var body = <String, dynamic>{'drop_pending_updates': drop_pending_updates};
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to get current webhook status. Requires no parameters.
@@ -146,7 +146,7 @@ class Telegram {
   ///
   /// https://core.telegram.org/bots/api#logout
   Future<bool> logOut() async =>
-      await (HttpClient.httpGet('${_baseUrl}${_token}/logOut') as FutureOr<bool>);
+      await (HttpClient.httpGet('${_baseUrl}${_token}/logOut'));
 
   /// Use this method to close the bot instance before moving it from one local server to another.
   /// You need to delete the webhook before calling this method to ensure that the bot isn't
@@ -156,7 +156,7 @@ class Telegram {
   ///
   /// https://core.telegram.org/bots/api#close
   Future<bool> close() async =>
-      await (HttpClient.httpGet('${_baseUrl}${_token}/close') as FutureOr<bool>);
+      await (HttpClient.httpGet('${_baseUrl}${_token}/close'));
 
   /// Use this method to send text messages. On success, the sent [Message] is returned.
   ///
@@ -1003,7 +1003,7 @@ class Telegram {
     }
     var requestUrl = '${_baseUrl}${_token}/sendChatAction';
     var body = <String, dynamic>{'chat_id': chat_id, 'action': action};
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to get a list of profile pictures for a user. Returns a [UserProfilePhotos] object.
@@ -1070,7 +1070,7 @@ class Telegram {
       'user_id': user_id,
       'until_date': until_date,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to unban a previously kicked user in a supergroup or channel.
@@ -1091,7 +1091,7 @@ class Telegram {
       'user_id': user_id,
       'only_if_banned': only_if_banned,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to restrict a user in a supergroup.
@@ -1117,7 +1117,7 @@ class Telegram {
       'permissions': jsonEncode(permissions),
       'until_date': until_date,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to promote or demote a user in a supergroup or a channel.
@@ -1154,7 +1154,7 @@ class Telegram {
       'can_pin_messages': can_pin_messages,
       'can_promote_members': can_promote_members,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   Future<bool> setChatAdministratorCustomTitle(
@@ -1175,7 +1175,7 @@ class Telegram {
   /// Use this method to set default chat permissions for all members.
   /// The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members admin rights.
   /// Returns *True* on success.
-  Future<bool> setChatPermissions(
+  Future<dynamic> setChatPermissions(
       dynamic chat_id, ChatPermissions permissions) async {
     if (chat_id is! String && chat_id is! int) {
       return Future.error(TelegramException(
@@ -1186,7 +1186,7 @@ class Telegram {
       'chat_id': chat_id,
       'permissions': jsonEncode(permissions),
     };
-    return HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>;
+    return HttpClient.httpPost(requestUrl, body: body);
   }
 
   /// Use this method to generate a invite link for a chat;
@@ -1202,7 +1202,7 @@ class Telegram {
     }
     var requestUrl = '${_baseUrl}${_token}/exportChatInviteLink';
     var body = <String, dynamic>{'chat_id': chat_id};
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<String>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to set a profile photo for the chat.
@@ -1226,7 +1226,7 @@ class Telegram {
         1,
         MultipartFile('photo', photo.openRead(), photo.lengthSync(),
             filename: '${photo.lengthSync()}'));
-    return await (HttpClient.httpMultipartPost(requestUrl, files, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpMultipartPost(requestUrl, files, body: body));
   }
 
   /// Use this method to delete a chat photo.
@@ -1245,7 +1245,7 @@ class Telegram {
     }
     var requestUrl = '${_baseUrl}${_token}/deleteChatPhoto';
     var body = <String, dynamic>{'chat_id': chat_id};
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to change the title of a chat.
@@ -1267,7 +1267,7 @@ class Telegram {
       'chat_id': chat_id,
       'title': title,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to change the description of a supergroup or a channel.
@@ -1285,7 +1285,7 @@ class Telegram {
       'chat_id': chat_id,
       'description': description,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to pin a message in a supergroup or a channel.
@@ -1306,7 +1306,7 @@ class Telegram {
       'message_id': message_id,
       'disable_notification': disable_notification,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to remove a message from the list of pinned messages in a chat.
@@ -1324,7 +1324,7 @@ class Telegram {
     }
     var requestUrl = '${_baseUrl}${_token}/unpinChatMessage';
     var body = <String, dynamic>{'chat_id': chat_id, 'message_id': message_id};
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to clear the list of pinned messages in a chat.
@@ -1340,7 +1340,7 @@ class Telegram {
     }
     var requestUrl = '${_baseUrl}${_token}/unpinAllChatMessages';
     var body = <String, dynamic>{'chat_id': chat_id};
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method for your bot to leave a group, supergroup or channel. Returns *True* on success.
@@ -1353,7 +1353,7 @@ class Telegram {
     }
     var requestUrl = '${_baseUrl}${_token}/leaveChat';
     var body = <String, dynamic>{'chat_id': chat_id};
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to get up to date information about the chat
@@ -1405,7 +1405,7 @@ class Telegram {
     }
     var requestUrl = '${_baseUrl}${_token}/getChatMembersCount';
     var body = <String, dynamic>{'chat_id': chat_id};
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<int>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to get information about a member of a chat.
@@ -1449,7 +1449,7 @@ class Telegram {
       'chat_id': chat_id,
       'sticker_set_name': sticker_set_name,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to delete a group sticker set from a supergroup.
@@ -1469,7 +1469,7 @@ class Telegram {
     }
     var requestUrl = '${_baseUrl}${_token}/deleteChatStickerSet';
     var body = <String, dynamic>{'chat_id': chat_id};
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to send answers to callback queries sent from [inline keyboards].
@@ -1495,14 +1495,14 @@ class Telegram {
       'url': url,
       'cache_time': cache_time,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to change the list of the bot's commands. Returns *True* on success.
   Future<bool> setMyCommands(List<BotCommand> commands) async {
     var requestUrl = '${_baseUrl}${_token}/setMyCommands';
     var body = <String, dynamic>{'commands': jsonEncode(commands)};
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to get the current list of the bot's commands. Requires no parameters.
@@ -1723,7 +1723,7 @@ class Telegram {
       'chat_id': chat_id,
       'message_id': message_id,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to send .webp stickers. On success, the sent [Message] is returned.
@@ -1832,7 +1832,7 @@ class Telegram {
           MultipartFile(
               'tgs_sticker', tgs_sticker.openRead(), tgs_sticker.lengthSync(),
               filename: '${tgs_sticker.lengthSync()}'));
-      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body) as FutureOr<bool>);
+      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body));
     } else if (png_sticker is io.File) {
       // filename cannot be empty to post to Telegram server
       var files = List<MultipartFile>.filled(
@@ -1840,10 +1840,10 @@ class Telegram {
           MultipartFile(
               'png_sticker', png_sticker.openRead(), png_sticker.lengthSync(),
               filename: '${png_sticker.lengthSync()}'));
-      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body) as FutureOr<bool>);
+      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body));
     } else if (png_sticker is String) {
       body.addAll({'png_sticker': png_sticker});
-      return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+      return await (HttpClient.httpPost(requestUrl, body: body));
     } else {
       return Future.error(TelegramException(
           'Attribute \'png_sticker\' can only be either io.File or String (Telegram file_id or image url)'));
@@ -1880,7 +1880,7 @@ class Telegram {
           MultipartFile(
               'tgs_sticker', tgs_sticker.openRead(), tgs_sticker.lengthSync(),
               filename: '${tgs_sticker.lengthSync()}'));
-      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body) as FutureOr<bool>);
+      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body));
     } else if (png_sticker is io.File) {
       // filename cannot be empty to post to Telegram server
       var files = List<MultipartFile>.filled(
@@ -1888,10 +1888,10 @@ class Telegram {
           MultipartFile(
               'png_sticker', png_sticker.openRead(), png_sticker.lengthSync(),
               filename: '${png_sticker.lengthSync()}'));
-      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body) as FutureOr<bool>);
+      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body));
     } else if (png_sticker is String) {
       body.addAll({'png_sticker': png_sticker});
-      return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+      return await (HttpClient.httpPost(requestUrl, body: body));
     } else {
       return Future.error(TelegramException(
           'Attribute \'png_sticker\' can only be either io.File or String (Telegram file_id or image url)'));
@@ -1908,7 +1908,7 @@ class Telegram {
       'sticker': sticker,
       'position': position,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to delete a sticker from a set created by the bot.
@@ -1918,7 +1918,7 @@ class Telegram {
   Future<bool> deleteStickerFromSet(String sticker) async {
     var requestUrl = '${_baseUrl}${_token}/deleteStickerFromSet';
     var body = <String, dynamic>{'sticker': sticker};
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to set the thumbnail of a sticker set.
@@ -1932,17 +1932,17 @@ class Telegram {
       'user_id': user_id,
     };
     if (thumb == null) {
-      return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+      return await (HttpClient.httpPost(requestUrl, body: body));
     } else if (thumb is io.File) {
       // filename cannot be empty to post to Telegram server
       var files = List<MultipartFile>.filled(
           1,
           MultipartFile('thumb', thumb.openRead(), thumb.lengthSync(),
               filename: '${thumb.lengthSync()}'));
-      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body) as FutureOr<bool>);
+      return await (HttpClient.httpMultipartPost(requestUrl, files, body: body));
     } else if (thumb is String) {
       body.addAll({'thumb': thumb});
-      return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+      return await (HttpClient.httpPost(requestUrl, body: body));
     } else {
       return Future.error(TelegramException(
           'Attribute \'thumb\' can only be either io.File or String (Telegram file_id or image url)'));
@@ -1971,7 +1971,7 @@ class Telegram {
       'switch_pm_text': switch_pm_text,
       'switch_pm_parameter': switch_pm_parameter,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to send invoices. On success, the sent [Message] is returned.
@@ -2058,7 +2058,7 @@ class Telegram {
       'shipping_options': jsonEncode(shipping_options),
       'error_message': error_message,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Once the user has confirmed their payment and shipping details,
@@ -2083,7 +2083,7 @@ class Telegram {
       'ok': ok,
       'error_message': error_message,
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Informs a user that some of the Telegram Passport elements they provided contains errors.
@@ -2104,7 +2104,7 @@ class Telegram {
       'user_id': user_id,
       'errors': jsonEncode(errors),
     };
-    return await (HttpClient.httpPost(requestUrl, body: body) as FutureOr<bool>);
+    return await (HttpClient.httpPost(requestUrl, body: body));
   }
 
   /// Use this method to send a game. On success, the sent [Message] is returned.
